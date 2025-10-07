@@ -15,5 +15,17 @@ export default function QueryProcessor(query: string): string {
     return "gsha";
   }
 
+  if (query.toLowerCase().includes("game id")) {
+    return "5f34a61a";
+  }
+
+  if (query.toLowerCase().includes("class name")) {
+    return "17-313";
+  }
+
+  if (query.toLowerCase().includes("professor name")) {
+    return "michael hilton";
+  }
+
   return "";
 }
