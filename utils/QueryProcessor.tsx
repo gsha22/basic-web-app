@@ -45,5 +45,26 @@ export default function QueryProcessor(query: string): string {
     return "Unable to calculate the sum.";
   }
 
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("times")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length === 2) {
+      const product = numbers[0] * numbers[1];
+      return product.toString();
+    }
+    return "Unable to calculate the product.";
+  }
+
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("divided by")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length === 2) {
+      if (numbers[1] == 0) {
+        return "Can't divide by 0"
+      }
+      const res = numbers[0] / numbers[1];
+      return res.toString();
+    }
+    return "Unable to calculate the product.";
+  }
+
   return "";
 }
