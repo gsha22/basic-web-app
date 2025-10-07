@@ -34,10 +34,15 @@ export default function QueryProcessor(query: string): string {
       return largest.toString();
     }
     return "Unable to determine the largest number.";
-  }	
+  }
 
-  if (query.toLowerCase().includes("what is 63 plus 90?")) {
-    return "153";
+  if (query.toLowerCase().includes("what is") && query.toLowerCase().includes("plus")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length === 2) {
+      const sum = numbers[0] + numbers[1];
+      return sum.toString();
+    }
+    return "Unable to calculate the sum.";
   }
 
   return "";
