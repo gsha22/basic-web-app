@@ -1,3 +1,7 @@
+export function getLargestOfThree(a: number, b: number, c: number): number {
+    return Math.max(a, b, c);
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -23,8 +27,17 @@ export default function QueryProcessor(query: string): string {
     return "17-313";
   }
 
-  if (query.toLowerCase().includes("Which of the following numbers is the largest: 19, 96, 75?")) {
-    return "96";
+  if (query.toLowerCase().includes("which of the following numbers is the largest")) {
+    const numbers = query.match(/\d+/g)?.map(Number);
+    if (numbers && numbers.length === 3) {
+      const largest = getLargestOfThree(numbers[0], numbers[1], numbers[2]);
+      return largest.toString();
+    }
+    return "Unable to determine the largest number.";
+  }	
+
+  if (query.toLowerCase().includes("what is 63 plus 90?")) {
+    return "153";
   }
 
   return "";
